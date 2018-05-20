@@ -12,10 +12,11 @@ dl {
 }
 
 img {
-  background-color: transparent !important;
+  background-color: white !important;
   border: 0 !important;
   max-height: 45vh !important;
   box-shadow: none !important;
+  border: 20px white solid !important;
 }
 
 img.qr {

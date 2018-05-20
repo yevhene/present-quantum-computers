@@ -8,16 +8,135 @@
 </section>
 
 <section>
-  <h2>План</h2>
+  <h2>Кубіт</h2>
 
   <section>
-    - Вступ
-    - Що таке Квантові Комп'ютери
-    -- Експонта
-    -- NPC
-    - Перелік
-    - Висновок
+    <img src="/images/qubit-circle.png" />
   </section>
+
+  <section>
+    <h3>Сфера Блоха</h3>
+
+    <img src="/images/qubit-bloch-sphere.svg" />
+  </section>
+
+  <section>
+    TODO: CNOT
+  </section>
+</section>
+
+<section>
+  <h2>Можливості</h2>
+
+  <section>
+    <h3>Складність обчислень</h3>
+
+    <img src="/images/complexity.svg" />
+  </section>
+
+  <section>
+    <h3>Важливі Алгоритми</h3>
+
+    <h4>Алгоритм Гровера (GSA)</h4>
+
+    <pre><code class="fsharp" data-trim contenteditable>
+f(x) = 1
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Важливі Алгоритми</h3>
+
+    <h4>Алгоритм Шора</h4>
+
+    <p>Знаходження простих множників числа</p>
+  </section>
+
+  <section>
+    <h3>До-квантова криптографія</h3>
+
+    <ul>
+      <li>Факторизація цілих чисел</li>
+      <li>Визначення дискретного логарифму</li>
+      <li>Побудові еліптичних кривих</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>Задання квантового алгоритму</h2>
+
+  <section>
+    <h3>Схема</h3>
+
+    <img src="/images/teleport-circuit.png" />
+  </section>
+
+  <section>
+    <h3>Предметно-орієнтована мова (DSL)</h3>
+
+    <pre><code class="fsharp" data-trim contenteditable>
+module Script =
+    let teleport (qs:Qubits) =
+        let q0,q1,q2 = qs.[0],qs.[1],qs.[2]  // Extract 3 qubits
+
+        // Give names to the first three qubits
+        LabelL "Src" [q0]
+        LabelL "\\ket{0}" [q1]
+        LabelL "\\ket{0}" [q2]
+
+        EPR[q1;q2]; CNOT qs; H qs // EPR 1,2, then CNOT 0,1 and H 0
+        M[q1]; BC X [q1;q2]       // Conditionally apply X
+        M[q0]; BC Z [q0;q2]       // Conditionally apply Z
+        LabelR "Dest" [q2]        // Label output
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>QASM</h3>
+
+    <pre><code class="qasm" data-trim contenteditable>
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c0[1];
+creg c1[1];
+creg c2[1];
+gate post q { }
+u3(0.3,0.2,0.1) q[0];
+h q[1];
+cx q[1],q[2];
+barrier q;
+cx q[0],q[1];
+h q[0];
+measure q[0] -&gt; c0[0];
+measure q[1] -&gt; c1[0];
+if(c0==1) z q[2];
+if(c1==1) x q[2];
+post q[2];
+measure q[2] -&gt; c2[0];
+    </code></pre>
+  </section>
+</section>
+
+<section>
+  <h2>Локальні</h2>
+
+  TODO: LIQ𝑈𝑖⏐〉
+</section>
+
+<section>
+  <h2>Онлайн</h2>
+
+  TODO: Google QuantumPlayground
+</section>
+
+<section>
+  <h2>Реальні</h2>
+
+  TODO: IBM Q Experience
+  TODO: Forest
+  TODO: Quantum in the Cloud (The University of Bristol)
 </section>
 
 <section>

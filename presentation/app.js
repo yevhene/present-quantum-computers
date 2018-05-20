@@ -24,6 +24,7 @@ app.get('/', (req, res) => res.render('content', {
 }));
 
 app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'assets')));
 
 const port = process.env.PORT || 3000;
 
