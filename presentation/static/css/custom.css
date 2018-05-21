@@ -14,6 +14,7 @@ dl {
 img {
   background-color: white !important;
   max-height: 45vh !important;
+  height: 45vh;
   box-shadow: none !important;
   border: 20px white solid !important;
 }
@@ -21,15 +22,6 @@ img {
 img.blue {
   background-color: blue !important;
   border: 20px blue solid !important;
-}
-
-img.qr {
-  height: 45vh;
-  border: 4px white solid !important;
-}
-
-img.mobile-gif {
-  max-height: 80vh !important;
 }
 
 .reveal {
